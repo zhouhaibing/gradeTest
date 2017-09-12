@@ -1,0 +1,15 @@
+!!com.zhb.db.test.ApktoolModel
+apkFileName: jxsj.apk
+compressionType: false
+doNotCompress: [arsc, assets/bin/Data/7004a9daade4ef64ebffedd9eebb04a8, assets/bin/Data/PlayerConnectionConfigFile,
+  wem, bnk, txt, xml, bytes, assets/Bundle]
+isFrameworkApk: 'false'
+packageInfo: {forcedPackageId: '127', renameManifestPackage: null}
+sdkInfo: {minSdkVersion: '17', targetSdkVersion: '17'}
+sharedLibrary: false
+unknownFiles: {}
+usesFramework:
+  ids: ['1']
+  tag: null
+version: 2.1.1
+versionInfo: {versionCode: '3697', versionName: 1.4.3697}
