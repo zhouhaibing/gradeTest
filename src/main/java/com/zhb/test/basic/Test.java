@@ -1,6 +1,7 @@
 package com.zhb.test.basic;
 
-import java.util.Scanner;
+import java.util.Date;
+
 
 public class Test {
 	/*public static void main(String[] args){
@@ -21,7 +22,7 @@ public class Test {
 	}*/
 	
 	public static void main(String[] args){
-		Scanner input = new Scanner(System.in);
+		/*Scanner input = new Scanner(System.in);
 		int rowNum  = input.nextInt();
 		int columnNum  = input.nextInt();
 		String[] views = new String[rowNum];
@@ -41,7 +42,9 @@ public class Test {
 			}
 			
 		}
-		System.out.println(num);
+		System.out.println(num);*/
+		Date date = new Date();
+		System.out.println();
 		
 	}
 	

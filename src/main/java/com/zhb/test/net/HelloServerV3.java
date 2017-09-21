@@ -3,6 +3,12 @@ package com.zhb.test.net;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+/**
+ * 伪异步IO, 使用线程池 M/N
+ * @author ZHOUHAIBING
+ *
+ */
 public class HelloServerV3 {
 	private int port = 8000;
 	private ServerSocket serverSocket;

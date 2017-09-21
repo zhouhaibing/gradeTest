@@ -1,3 +1,5 @@
+import java.lang.invoke.LambdaForm.Compiled;
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
@@ -25,9 +27,10 @@ dependencies {
 	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.12'
 	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
 	compile "org.springframework:spring-core:${springVersion}"
-	
 	compile name:'apktool-2.1.1'
-	
 	compile "org.yaml:snakeyaml:1.13"
+	
+	//netty test
+	compile 'io.netty:netty-all:5.0.0.Alpha1'
 	
 }

@@ -26,11 +26,9 @@ public class HelloTest {
 
 	public static void main(String[] args) throws Exception {
 		
-		
-		String s = "{\"appId\":\"91000658\",\"mobile\":null,\"uid\":\"1\",\"serverId\":null}";
-		
+		/*String s = "{\"appId\":\"91000658\",\"mobile\":null,\"uid\":\"1\",\"serverId\":null}";
 		JSONObject obj = JSONObject.parseObject(s);
-		System.out.println(obj.getString("serverId"));
+		System.out.println(obj.getString("serverId"));*/
 		
 		/*System.out.println(URLEncoder.encode("ABC ABC"));
 
