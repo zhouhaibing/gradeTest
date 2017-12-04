@@ -9,13 +9,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HelloTest {
 	public static final String KEY = "xgsdkNiuX";
@@ -24,8 +25,35 @@ public class HelloTest {
 	private static final int COUNT_BITS = Integer.SIZE - 3;
 	private static final int CAPACITY = (1 << COUNT_BITS) - 1;
 
+	
+	
 	public static void main(String[] args) throws Exception {
 		
+		Map<String,String> hmap = new TreeMap<>();
+		hmap.put("hello", "world");
+		hmap.put("haha", "good");
+		hmap.put("aaha", "good");
+		for(String key : hmap.keySet()){
+			System.out.println("key: " + key + " value: " + hmap.get(key));
+		}
+		
+		String s = "hello";
+		String s2 = "23";
+		String coms2 = s + s2;
+		String s3 = new String("hello2");
+		//String ss = "hello2";
+		System.out.println(coms2.intern() == coms2);
+		String s4 = new String("hello222");
+		System.out.println(s2.intern() == s2);
+					
+			
+		BigDecimal fen = new BigDecimal("1.00").multiply(new BigDecimal(100));
+		System.out.println(fen.setScale(0, RoundingMode.HALF_UP).toString());
+		
+		/*System.out.println(URLEncoder.encode("巅峰&烟头", "UTF-8"));
+		System.out.println(Runtime.getRuntime().availableProcessors());
+		System.out.println(Math.pow(2, 8));
+		System.out.println(1 << 2);*/
 		/*String s = "{\"appId\":\"91000658\",\"mobile\":null,\"uid\":\"1\",\"serverId\":null}";
 		JSONObject obj = JSONObject.parseObject(s);
 		System.out.println(obj.getString("serverId"));*/

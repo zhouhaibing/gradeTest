@@ -38,10 +38,10 @@ public class TimeServer {
 
     public void bind(int port) throws Exception {
 	// 配置服务端的NIO线程组
-	EventLoopGroup bossGroup = new NioEventLoopGroup();
+	EventLoopGroup bossGroup = new NioEventLoopGroup();//
 	EventLoopGroup workerGroup = new NioEventLoopGroup();
 	try {
-	    ServerBootstrap b = new ServerBootstrap();
+	    ServerBootstrap b = new ServerBootstrap();//NIO 服务端启动辅助类，设置各种必要的参数
 	    b.group(bossGroup, workerGroup)
 		    .channel(NioServerSocketChannel.class)
 		    .option(ChannelOption.SO_BACKLOG, 1024)
@@ -59,18 +59,17 @@ public class TimeServer {
     }
 
     private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
-	@Override
-	protected void initChannel(SocketChannel arg0) throws Exception {
-	    arg0.pipeline().addLast(new LineBasedFrameDecoder(1024));//以\n or \r\n分包，解决粘包问题
-	    // 指定分隔符分隔
-	    
-	    /*ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
-	    arg0.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter));*/
-	    
-	     
-	    arg0.pipeline().addLast(new StringDecoder());
-	    arg0.pipeline().addLast(new TimeServerHandler());
-	}
+		@Override
+		protected void initChannel(SocketChannel arg0) throws Exception {
+		    arg0.pipeline().addLast(new LineBasedFrameDecoder(1024));//以\n or \r\n分包，解决粘包问题
+		    // 指定分隔符分隔
+		    
+		    /*ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
+		    arg0.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter));*/
+		    //存在先后顺序关系
+		    arg0.pipeline().addLast(new StringDecoder());
+		    arg0.pipeline().addLast(new TimeServerHandler());
+		}
     }
 
     /**
@@ -78,14 +77,14 @@ public class TimeServer {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-	int port = 8080;
-	if (args != null && args.length > 0) {
-	    try {
-		port = Integer.valueOf(args[0]);
-	    } catch (NumberFormatException e) {
-		// 采用默认值
-	    }
-	}
-	new TimeServer().bind(port);
+		int port = 8080;
+		if (args != null && args.length > 0) {
+		    try {
+		    	port = Integer.valueOf(args[0]);
+		    } catch (NumberFormatException e) {
+		    	// 采用默认值
+		    }
+		}
+		new TimeServer().bind(port);
     }
 }
