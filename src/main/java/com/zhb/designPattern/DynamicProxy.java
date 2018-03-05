@@ -4,6 +4,16 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+
+/**
+ * JDK 动态代理
+ * 1. 基本服务
+ * 2. 代理类
+ *  依赖基本服务实体
+ *  Proxy.newProxyInstance(classloader, interfaces, invocationHandler{invoke()})
+ * @author Administrator
+ *
+ */
 public class DynamicProxy {
 	public static void main(String[] args){
 		Bird bird = new BigBird();
@@ -35,6 +45,8 @@ class BigBirdProxyHandler implements InvocationHandler{
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		System.out.println("start singing");
+	    System.out.println(proxy.getClass());
+		//Object retObj = method.invoke(bird, args);
 		Object retObj = method.invoke(bird, args);
 		System.out.println("stop singing");
 		return retObj;

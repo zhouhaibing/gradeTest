@@ -1,6 +1,8 @@
 package com.zhb.gradle.thread;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 
 import com.zhb.test.http.HttpUtil;
@@ -56,13 +58,16 @@ public class Test {
 	
 	public static void main(String[] args){
 		String[] urls = new String[]{"http://www.baidu.com","http://www.xgsdk.com","http://www.hhh.com"};
-		concurrentfetchUrl(urls);
-		
+		concurrentfetchUrl2(urls);
+		 
 		//System.out.println(HttpUtil.pingURL(urls[0]));
 	}
 	
+	
+	
+	// countDownLatch
 	public static void concurrentfetchUrl(String[] urls){
-		if(urls == null || urls.length ==0){
+		if(urls == null || urls.length ==0) {
 			return;
 		}
 		CountDownLatch latch = new CountDownLatch(urls.length);
@@ -89,5 +94,45 @@ public class Test {
 			e.printStackTrace();
 		}
 	}
+	
+	//CyclicBarrier
+	public static void concurrentfetchUrl2(String[] urls){
+		if(urls == null || urls.length ==0) {
+			return;
+		}
+		CyclicBarrier cb = new CyclicBarrier(urls.length + 1);// main thread need take.
+		long startTime = System.currentTimeMillis();
+		for(int i=0;i<urls.length;i++){
+			final int tempi = i;
+			Thread t = new Thread(new Runnable(){
+				@Override
+				public void run() {
+					long time = System.currentTimeMillis();
+					HttpUtil.pingURL(urls[tempi]);
+					System.out.println("http get " + urls[tempi] + ",time cost " + (System.currentTimeMillis() - time));
+					try {
+						cb.await();
+					} catch (InterruptedException | BrokenBarrierException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			});
+			t.start();
+		}
+		
+		try {
+			cb.await();
+			System.out.println("total time is " + (System.currentTimeMillis() - startTime));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (BrokenBarrierException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 }
 

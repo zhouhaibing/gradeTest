@@ -9,14 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.apache.commons.codec.digest.HmacUtils;
+
+import com.alibaba.fastjson.JSONObject;
+import com.zhb.utils.entity.ComparableVersion;
 
 public class HelloTest {
 	public static final String KEY = "xgsdkNiuX";
@@ -25,30 +23,40 @@ public class HelloTest {
 	private static final int COUNT_BITS = Integer.SIZE - 3;
 	private static final int CAPACITY = (1 << COUNT_BITS) - 1;
 
-	
-	
+		
 	public static void main(String[] args) throws Exception {
+		HmacUtils.hmacSha256Hex(key, content);
 		
-		Map<String,String> hmap = new TreeMap<>();
-		hmap.put("hello", "world");
-		hmap.put("haha", "good");
-		hmap.put("aaha", "good");
-		for(String key : hmap.keySet()){
-			System.out.println("key: " + key + " value: " + hmap.get(key));
-		}
+		JSONObject o = new JSONObject();
+		o.put("hello", true);
+		System.out.println(o.getString("hello"));
 		
-		String s = "hello";
-		String s2 = "23";
-		String coms2 = s + s2;
-		String s3 = new String("hello2");
-		//String ss = "hello2";
-		System.out.println(coms2.intern() == coms2);
-		String s4 = new String("hello222");
-		System.out.println(s2.intern() == s2);
-					
-			
-		BigDecimal fen = new BigDecimal("1.00").multiply(new BigDecimal(100));
-		System.out.println(fen.setScale(0, RoundingMode.HALF_UP).toString());
+		ComparableVersion cv = new ComparableVersion("20v_2.5.3.003");
+		System.out.println(cv.compareTo(new ComparableVersion("7.1.0.305")));
+		
+//		System.out.println(URLEncoder.encode("", "UTF-8"));
+		
+		
+//		Map<String,String> hmap = new TreeMap<>();
+//		hmap.put("hello", "world");
+//		hmap.put("haha", "good");
+//		hmap.put("aaha", "good");
+//		for(String key : hmap.keySet()){
+//			System.out.println("key: " + key + " value: " + hmap.get(key));
+//		}
+//		
+//		String s = "hello";
+//		String s2 = "23";
+//		String coms2 = s + s2;
+//		String s3 = new String("hello2");
+//		//String ss = "hello2";
+//		System.out.println(coms2.intern() == coms2);
+//		String s4 = new String("hello222");
+//		System.out.println(s2.intern() == s2);
+//					
+//			
+//		BigDecimal fen = new BigDecimal("1.00").multiply(new BigDecimal(100));
+//		System.out.println(fen.setScale(0, RoundingMode.HALF_UP).toString());
 		
 		/*System.out.println(URLEncoder.encode("巅峰&烟头", "UTF-8"));
 		System.out.println(Runtime.getRuntime().availableProcessors());

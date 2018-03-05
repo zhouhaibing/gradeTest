@@ -2,6 +2,8 @@ package com.zhb.test.basic;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.JSONObject;
+
 
 public class Test {
 	/*public static void main(String[] args){
@@ -22,29 +24,10 @@ public class Test {
 	}*/
 	
 	public static void main(String[] args){
-		/*Scanner input = new Scanner(System.in);
-		int rowNum  = input.nextInt();
-		int columnNum  = input.nextInt();
-		String[] views = new String[rowNum];
-		int num = 0;
-		input.nextLine();
-		for(int i=0;i<rowNum;i++){
-			String s = input.nextLine();
-			views[i] = s;
-		}
+		String ss = "{\"name\":\"haha\",\"age\":12,\"good\":\"xxx\"}";
 		
-		for(int i=0;i<rowNum;i++){
-			for(int j=0;j<columnNum;j++){
-				char c = views[i].charAt(j);
-				if(c == '*'){
-					num++;
-				}
-			}
-			
-		}
-		System.out.println(num);*/
-		Date date = new Date();
-		System.out.println();
+		Person p = JSONObject.parseObject(ss, Person.class);
+		System.out.println(p);
 		
 	}
 	
@@ -56,5 +39,9 @@ public class Test {
 		}
 		return -1;
 	}
+	
+	
+	
+	
 
 }
