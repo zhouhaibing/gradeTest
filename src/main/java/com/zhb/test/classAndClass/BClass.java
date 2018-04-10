@@ -7,8 +7,11 @@ public class BClass extends AClass{
 	}
 	
 	public static void main(String[] args){
-		AClass a = new AClass();
-		a.sayHi();
+		/*AClass a = new BClass();
+		a.sayHi();*/ //runtime binding
+		AClass a = new BClass();
+		a.superCall();
+		
 	}
 
 }

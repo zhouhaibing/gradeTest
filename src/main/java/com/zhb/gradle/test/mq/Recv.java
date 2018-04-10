@@ -46,7 +46,7 @@ public class Recv {
           //关注所有级别的日志（多重绑定）  
           channel.queueBind(queueName, EXCHANGE_NAME, routingKey);  
       }  
-      System.out.println(" [*] Waiting for messages. To exit press CTRL+C");  
+      System.out.println("[*] Waiting for messages. To exit press CTRL+C");  
         
       // 创建队列消费者  
       final Consumer consumer = new DefaultConsumer(channel) {  

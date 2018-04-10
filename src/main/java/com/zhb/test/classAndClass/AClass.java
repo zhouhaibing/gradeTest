@@ -5,5 +5,10 @@ public class AClass {
 	public void sayHi(){
 		System.out.println("i am super a");
 	}
+	
+	public void superCall(){
+		System.out.println("super call haha");
+		this.sayHi();
+	}
 
 }

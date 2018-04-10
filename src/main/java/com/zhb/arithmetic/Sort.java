@@ -107,7 +107,20 @@ public class Sort {
 	}
 	
 	
-	
+	public static void insertSort(int[] array){
+		for(int i=1; i < array.length;i++){
+			int temp = array[i];
+			int j;
+			for(j = i;j > 0; j--){
+				if(temp < array[j-1]){
+					array[j] = array[j-1];
+				}else{
+					break;
+				}
+			}
+			array[j] = temp;
+		}
+	}
 	
 	public static void print(int[] nums) {
 		for(int i : nums){

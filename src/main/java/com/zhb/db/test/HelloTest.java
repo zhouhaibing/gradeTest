@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.apache.commons.codec.digest.HmacUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zhb.utils.entity.ComparableVersion;
@@ -25,7 +24,14 @@ public class HelloTest {
 
 		
 	public static void main(String[] args) throws Exception {
-		HmacUtils.hmacSha256Hex(key, content);
+		//HmacUtils.hmacSha256Hex(key, content);
+		HashMap<String, String> mapp = new HashMap<>();
+		String key = "hello";
+		int h;
+		System.out.print(key.hashCode() + " " + Integer.toBinaryString(key.hashCode()) + "\n");
+		System.out.print(String.valueOf(key.hashCode() >>> 16) + " " + Integer.toBinaryString(key.hashCode() >>> 16) + "\n");
+		int dd = (h = key.hashCode()) ^ (h >>> 16);
+		System.out.print(String.valueOf(dd) + " " + Integer.toBinaryString(dd) + "\n");
 		
 		JSONObject o = new JSONObject();
 		o.put("hello", true);

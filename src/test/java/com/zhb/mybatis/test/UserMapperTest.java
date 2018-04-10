@@ -30,13 +30,20 @@ public class UserMapperTest {
 	public void testHello() throws Exception {
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> users = userMapper.findUsers();
-        System.out.println(users);
-        sqlSession.close();
-        
-        sqlSession =  sqlSessionFactory.openSession();
-        userMapper = sqlSession.getMapper(UserMapper.class);
+        //System.out.println(users);
+        //sqlSession.close();
+        sqlSession.commit();
+        //sqlSession =  sqlSessionFactory.openSession();
+        //userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> userss = userMapper.findUsers();
         System.out.println(userss);
+        sqlSession.close();
+	}
+	
+	@Test
+	public void testSelectList() throws Exception {
+		List<User> users = sqlSession.selectList("com.zhb.mybatis.test.UserMapper.findUsers");
+		System.out.println(users);
 	}
 	
 	
